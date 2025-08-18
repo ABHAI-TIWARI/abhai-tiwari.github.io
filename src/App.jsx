@@ -174,7 +174,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0">
-              <h1 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <h1 className="text-xl font-bold text-purple-600">
                 Abhai Tiwari
               </h1>
             </div>
@@ -242,11 +242,12 @@ function App() {
         
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
           <div className="animate-fade-in-up">
+            <img src="https://placehold.co/192x192" alt="Abhai Tiwari" className="w-48 h-48 rounded-full mx-auto mb-6 object-cover" />
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6">
-              <span className="block bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">
+              <span className="block text-purple-700">
                 Abhai Tiwari
               </span>
-              <span className="block text-2xl sm:text-3xl lg:text-4xl bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent font-normal mt-2">
+              <span className="block text-2xl sm:text-3xl lg:text-4xl text-pink-600 font-normal mt-2">
                 Embedded Systems Engineer
               </span>
             </h1>
@@ -294,7 +295,7 @@ function App() {
       <section id="about" className="py-20 bg-gradient-to-r from-purple-50/50 to-pink-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-purple-600 mb-4">
               About Me
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
@@ -366,7 +367,7 @@ function App() {
       <section id="experience" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-purple-600 mb-4">
               Professional Experience
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
@@ -411,7 +412,7 @@ function App() {
       <section id="skills" className="py-20 bg-gradient-to-r from-purple-50/50 to-pink-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-purple-600 mb-4">
               Technical Skills
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
@@ -448,7 +449,7 @@ function App() {
       <section id="projects" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-purple-600 mb-4">
               Key Projects
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
@@ -458,7 +459,7 @@ function App() {
             {projects.map((project, index) => (
               <Card key={index} className="bg-white/70 backdrop-blur-sm border-purple-200/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
                 <CardHeader>
-                  <CardTitle className="text-gray-800 text-xl group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-pink-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                  <CardTitle className="text-gray-800 text-xl group-hover:text-purple-600 transition-all duration-300">
                     {project.title}
                   </CardTitle>
                   <CardDescription className="text-purple-600 font-medium">
@@ -489,7 +490,7 @@ function App() {
       <section id="education" className="py-20 bg-gradient-to-r from-purple-50/50 to-pink-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-purple-600 mb-4">
               Education & Certifications
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
@@ -552,7 +553,7 @@ function App() {
       <section id="contact" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-purple-600 mb-4">
               Get In Touch
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
