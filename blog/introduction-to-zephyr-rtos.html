@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Getting Started with Zephyr RTOS - A comprehensive guide to the modern RTOS for embedded systems and IoT">
+    <title>Introduction to Zephyr RTOS | Abhai Tiwari</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        .blog-post {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+        .blog-post-header {
+            margin-bottom: 3rem;
+        }
+        .blog-post-category {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--bg-light);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .blog-post-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        .blog-post-meta {
+            display: flex;
+            gap: 2rem;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border);
+        }
+        .blog-post-content {
+            color: var(--text-gray);
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+        .blog-post-content h2 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin: 3rem 0 1.5rem;
+            font-weight: 600;
+        }
+        .blog-post-content h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin: 2rem 0 1rem;
+            font-weight: 600;
+        }
+        .blog-post-content p {
+            margin-bottom: 1.5rem;
+        }
+        .blog-post-content ul, .blog-post-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        .blog-post-content li {
+            margin-bottom: 0.75rem;
+        }
+        .blog-post-content code {
+            background: var(--bg-light);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+        }
+        .blog-post-content pre {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border);
+        }
+        .blog-post-content pre code {
+            background: none;
+            padding: 0;
+        }
+        .blog-post-content blockquote {
+            border-left: 4px solid var(--primary);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--text-light);
+        }
+        .back-link {
+            display: inline-block;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 3rem;
+            padding: 1rem 2rem;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            background: var(--primary);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html" class="logo">Abhai Tiwari</a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
+                    <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../index.html#skills" class="nav-link">Skills</a></li>
+                    <li><a href="../index.html#blog" class="nav-link active">Blog</a></li>
+                    <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Post Content -->
+    <article class="blog-post">
+        <div class="blog-post-header">
+            <span class="blog-post-category">RTOS</span>
+            <h1 class="blog-post-title">Getting Started with Zephyr RTOS for Embedded Systems</h1>
+            <div class="blog-post-meta">
+                <span>📅 December 10, 2024</span>
+                <span>✍️ By Abhai Tiwari</span>
+                <span>⏱️ 10 min read</span>
+            </div>
+        </div>
+
+        <div class="blog-post-content">
+            <p>In the rapidly evolving world of embedded systems and IoT, choosing the right Real-Time Operating System (RTOS) can make or break your project. While FreeRTOS has dominated the market for years, a new contender has emerged that's gaining significant traction: Zephyr RTOS. In this comprehensive guide, we'll explore what makes Zephyr unique and how to get started with it.</p>
+
+            <h2>What is Zephyr RTOS?</h2>
+            <p>Zephyr is an open-source, scalable real-time operating system (RTOS) designed for resource-constrained devices. Hosted by the Linux Foundation, Zephyr has been developed by a collaborative community of industry leaders, including Intel, Nordic Semiconductor, NXP, and many others.</p>
+
+            <blockquote>
+                "Zephyr RTOS provides a modern, flexible, and modular approach to embedded system development, making it ideal for IoT applications ranging from simple sensors to complex connected devices."
+            </blockquote>
+
+            <h2>Why Choose Zephyr?</h2>
+            <p>Zephyr offers several compelling advantages over traditional RTOS options:</p>
+
+            <h3>1. Extensive Hardware Support</h3>
+            <p>Zephyr supports over 400 development boards out of the box, including:</p>
+            <ul>
+                <li>ARM Cortex-M, Cortex-A, Cortex-R processors</li>
+                <li>x86 and x86_64 architectures</li>
+                <li>RISC-V processors</li>
+                <li>Xtensa processors (ESP32)</li>
+                <li>ARC processors</li>
+            </ul>
+
+            <h3>2. Modern Development Approach</h3>
+            <p>Unlike many legacy RTOS systems, Zephyr embraces modern software development practices:</p>
+            <ul>
+                <li>CMake-based build system</li>
+                <li>Device Tree for hardware description</li>
+                <li>Kconfig for configuration management</li>
+                <li>Python-based west meta-tool for project management</li>
+                <li>Comprehensive testing framework</li>
+            </ul>
+
+            <h3>3. Rich Connectivity Stack</h3>
+            <p>Zephyr comes with extensive networking and connectivity support:</p>
+            <ul>
+                <li>Bluetooth Low Energy (BLE) 5.3</li>
+                <li>Bluetooth Mesh</li>
+                <li>IEEE 802.15.4 and Thread</li>
+                <li>LoRaWAN</li>
+                <li>TCP/IP stack with IPv4/IPv6</li>
+                <li>MQTT, CoAP, HTTP, WebSocket</li>
+            </ul>
+
+            <h3>4. Security Features</h3>
+            <p>Security is built into Zephyr from the ground up:</p>
+            <ul>
+                <li>Memory protection and isolation</li>
+                <li>Secure boot and firmware updates</li>
+                <li>Cryptographic libraries (mbedTLS, TinyCrypt)</li>
+                <li>Trusted Execution Environment (TEE) support</li>
+            </ul>
+
+            <h2>Core Zephyr Concepts</h2>
+
+            <h3>Kernel Primitives</h3>
+            <p>Zephyr provides all the essential RTOS primitives you'd expect:</p>
+            
+            <ul>
+                <li><strong>Threads:</strong> Preemptive, priority-based multitasking</li>
+                <li><strong>Scheduling:</strong> Multiple scheduling algorithms (cooperative, preemptive, SMP)</li>
+                <li><strong>Synchronization:</strong> Semaphores, mutexes, condition variables</li>
+                <li><strong>Inter-thread Communication:</strong> Message queues, pipes, FIFOs</li>
+                <li><strong>Timers:</strong> Hardware and software timers</li>
+                <li><strong>Memory Management:</strong> Dynamic memory allocation, memory pools</li>
+            </ul>
+
+            <h3>Device Tree</h3>
+            <p>Zephyr uses Device Tree to describe hardware configuration, separating hardware description from software logic. This makes code more portable and maintainable:</p>
+
+            <pre><code>/ {
+    leds {
+        compatible = "gpio-leds";
+        led0: led_0 {
+            gpios = <&gpio0 13 GPIO_ACTIVE_LOW>;
+            label = "Green LED 0";
+        };
+    };
+};</code></pre>
+
+            <h3>Devicetree Bindings</h3>
+            <p>Device drivers in Zephyr use devicetree bindings to access hardware, making the code clean and platform-independent.</p>
+
+            <h2>Setting Up Your Development Environment</h2>
+
+            <h3>Prerequisites</h3>
+            <p>Before installing Zephyr, ensure you have:</p>
+            <ul>
+                <li>Python 3.8 or newer</li>
+                <li>CMake 3.20.0 or newer</li>
+                <li>A compatible toolchain (GNU Arm Embedded, Zephyr SDK, etc.)</li>
+                <li>Git for version control</li>
+            </ul>
+
+            <h3>Installation Steps</h3>
+            <ol>
+                <li><strong>Install West Meta-tool:</strong></li>
+            </ol>
+
+            <pre><code>pip3 install --user west</code></pre>
+
+            <ol start="2">
+                <li><strong>Get Zephyr Source Code:</strong></li>
+            </ol>
+
+            <pre><code>west init ~/zephyrproject
+cd ~/zephyrproject
+west update</code></pre>
+
+            <ol start="3">
+                <li><strong>Install Dependencies:</strong></li>
+            </ol>
+
+            <pre><code>west zephyr-export
+pip3 install --user -r ~/zephyrproject/zephyr/scripts/requirements.txt</code></pre>
+
+            <ol start="4">
+                <li><strong>Install Zephyr SDK:</strong></li>
+            </ol>
+
+            <pre><code>cd ~
+wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/zephyr-sdk-0.16.4_linux-x86_64.tar.xz
+tar xvf zephyr-sdk-0.16.4_linux-x86_64.tar.xz
+cd zephyr-sdk-0.16.4
+./setup.sh</code></pre>
+
+            <h2>Your First Zephyr Application</h2>
+            <p>Let's create a simple "Hello World" application that blinks an LED:</p>
+
+            <h3>1. Create Application Directory</h3>
+            <pre><code>cd ~/zephyrproject
+mkdir -p my_app/src
+cd my_app</code></pre>
+
+            <h3>2. Create main.c</h3>
+            <pre><code>#include &lt;zephyr/kernel.h&gt;
+#include &lt;zephyr/drivers/gpio.h&gt;
+
+#define LED_NODE DT_ALIAS(led0)
+#define LED_GPIO_PIN DT_GPIO_PIN(LED_NODE, gpios)
+#define LED_GPIO_FLAGS DT_GPIO_FLAGS(LED_NODE, gpios)
+
+static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED_NODE, gpios);
+
+int main(void)
+{
+    if (!gpio_is_ready_dt(&led)) {
+        return -1;
+    }
+
+    gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE);
+
+    while (1) {
+        gpio_pin_toggle_dt(&led);
+        k_msleep(1000);
+    }
+
+    return 0;
+}</code></pre>
+
+            <h3>3. Create CMakeLists.txt</h3>
+            <pre><code>cmake_minimum_required(VERSION 3.20.0)
+find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
+
+project(blinky)
+
+target_sources(app PRIVATE src/main.c)</code></pre>
+
+            <h3>4. Create prj.conf</h3>
+            <pre><code>CONFIG_GPIO=y</code></pre>
+
+            <h3>5. Build and Flash</h3>
+            <pre><code>west build -b nrf52840dk_nrf52840
+west flash</code></pre>
+
+            <h2>Key Zephyr Features for Professional Development</h2>
+
+            <h3>Power Management</h3>
+            <p>Zephyr includes sophisticated power management capabilities essential for battery-powered IoT devices:</p>
+            <ul>
+                <li>Multiple power states (active, idle, suspend, off)</li>
+                <li>Automatic power state transitions</li>
+                <li>Device runtime power management</li>
+                <li>Wake-up sources configuration</li>
+            </ul>
+
+            <h3>Logging and Debugging</h3>
+            <p>Comprehensive logging system with multiple backends:</p>
+            <ul>
+                <li>UART, RTT, and network logging</li>
+                <li>Log levels and filtering</li>
+                <li>Deferred logging for performance</li>
+                <li>Thread-safe logging</li>
+            </ul>
+
+            <h3>Shell Subsystem</h3>
+            <p>Interactive command-line interface for debugging and testing:</p>
+            <ul>
+                <li>Built-in commands for system inspection</li>
+                <li>Custom command registration</li>
+                <li>Multiple shell backends (UART, USB, Telnet)</li>
+            </ul>
+
+            <h3>File Systems</h3>
+            <p>Support for various file systems:</p>
+            <ul>
+                <li>FAT file system</li>
+                <li>LittleFS for flash memory</li>
+                <li>NVS (Non-Volatile Storage) for key-value pairs</li>
+            </ul>
+
+            <h2>Zephyr vs. Other RTOS</h2>
+
+            <h3>Zephyr vs. FreeRTOS</h3>
+            <ul>
+                <li><strong>Zephyr:</strong> More modern architecture, better hardware abstraction, richer ecosystem</li>
+                <li><strong>FreeRTOS:</strong> Simpler, more mature, larger existing codebase</li>
+            </ul>
+
+            <h3>Zephyr vs. Mbed OS</h3>
+            <ul>
+                <li><strong>Zephyr:</strong> Broader hardware support, more active development, Linux Foundation backing</li>
+                <li><strong>Mbed OS:</strong> Better ARM integration, simpler online development tools</li>
+            </ul>
+
+            <h2>Real-World Applications</h2>
+            <p>Zephyr is being used in production for various applications:</p>
+
+            <ul>
+                <li><strong>Smart Home Devices:</strong> Connected sensors, smart locks, lighting systems</li>
+                <li><strong>Wearables:</strong> Fitness trackers, smartwatches</li>
+                <li><strong>Industrial IoT:</strong> Remote monitoring, predictive maintenance</li>
+                <li><strong>Healthcare:</strong> Medical sensors, patient monitoring</li>
+                <li><strong>Automotive:</strong> Connected car features, V2X communication</li>
+            </ul>
+
+            <h2>Best Practices for Zephyr Development</h2>
+
+            <ol>
+                <li><strong>Use Device Tree:</strong> Always describe hardware in device tree rather than hardcoding</li>
+                <li><strong>Leverage Kconfig:</strong> Use configuration options instead of #defines</li>
+                <li><strong>Follow Zephyr Coding Style:</strong> Maintain consistency with Zephyr's coding standards</li>
+                <li><strong>Write Testable Code:</strong> Use Zephyr's testing framework (ztest)</li>
+                <li><strong>Optimize for Power:</strong> Implement proper power management from the start</li>
+                <li><strong>Use West Tool:</strong> Manage dependencies and updates with west</li>
+                <li><strong>Read Documentation:</strong> Zephyr's documentation is comprehensive and well-maintained</li>
+            </ol>
+
+            <h2>Common Challenges and Solutions</h2>
+
+            <h3>Challenge 1: Steep Learning Curve</h3>
+            <p><strong>Solution:</strong> Start with Zephyr's getting started guide and sample applications. The learning curve is worth the long-term benefits.</p>
+
+            <h3>Challenge 2: Build Time</h3>
+            <p><strong>Solution:</strong> Use ccache and ninja build system to speed up compilation. Enable only needed features in prj.conf.</p>
+
+            <h3>Challenge 3: Debugging</h3>
+            <p><strong>Solution:</strong> Use Zephyr's built-in logging, shell, and tracing features. Learn to use Device Tree overlays for quick hardware changes.</p>
+
+            <h2>Resources for Learning Zephyr</h2>
+
+            <ul>
+                <li><strong>Official Documentation:</strong> docs.zephyrproject.org</li>
+                <li><strong>Zephyr Academy:</strong> Online courses and tutorials</li>
+                <li><strong>GitHub Samples:</strong> Extensive example applications in the Zephyr repository</li>
+                <li><strong>Community:</strong> Active Discord server and mailing lists</li>
+                <li><strong>YouTube:</strong> Zephyr Project official channel with tutorials</li>
+            </ul>
+
+            <h2>The Future of Zephyr</h2>
+            <p>Zephyr is rapidly evolving with quarterly releases bringing new features:</p>
+
+            <ul>
+                <li>Enhanced machine learning support (TensorFlow Lite Micro)</li>
+                <li>Improved SMP (Symmetric Multi-Processing) support</li>
+                <li>Better Rust language integration</li>
+                <li>Advanced safety certifications (ISO 26262, IEC 61508)</li>
+                <li>Expanded hardware support including RISC-V ecosystem</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+            <p>Zephyr RTOS represents the future of embedded systems development. Its modern architecture, extensive hardware support, rich feature set, and active community make it an excellent choice for new IoT and embedded projects. While there's a learning curve, the investment pays off in terms of code quality, maintainability, and scalability.</p>
+
+            <p>Whether you're building a simple sensor node or a complex connected device, Zephyr provides the tools and infrastructure needed for professional embedded development. As the IoT ecosystem continues to grow, Zephyr is positioned to be a leading platform for innovation.</p>
+
+            <p>Ready to dive deeper? Clone the Zephyr repository, try the samples, and join the community. The embedded systems revolution is here, and Zephyr is leading the way.</p>
+
+            <a href="../index.html#blog" class="back-link">← Back to Blog</a>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Abhai Tiwari. All rights reserved.</p>
+                <p>Embedded Systems Engineer | Team Lead | AUTOSAR Specialist</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
