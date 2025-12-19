@@ -1,13 +1,566 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Abhai Tiwari - Embedded Systems Engineer | AUTOSAR Specialist</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Abhai Tiwari - Embedded Systems Engineer & Team Lead specializing in Automotive AUTOSAR Development">
+    <title>Abhai Tiwari | Embedded Systems Engineer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">Abhai Tiwari</a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <p class="hero-greeting">Hello, I'm</p>
+                <h1 class="hero-name">Abhai Tiwari</h1>
+                <h2 class="hero-title">Embedded Systems Engineer & Team Lead</h2>
+                <p class="hero-description">Specializing in Automotive AUTOSAR Development, ECU Firmware Design, and IoT Solutions with 8+ years of experience delivering production-grade systems for international OEMs.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="#projects" class="btn btn-outline">View Projects</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">8+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Devices Deployed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Publications</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p class="text-large">I'm a Team Lead with 8+ years of embedded systems engineering experience, specializing in automotive AUTOSAR development and ECU firmware design.</p>
+                    <p>My expertise spans safety-critical automotive systems, real-time embedded platforms, and IoT solutions. I've successfully delivered production-grade automotive software for major international OEMs including MAN, HKMC (Hyundai-Kia), and BMW suppliers.</p>
+                    <p>I'm proficient in AUTOSAR classic architecture, diagnostic protocols (UDS), and advanced debugging with Vector tools. I also co-founded a MeitY-backed AgriTech startup, scaling IoT deployment to over 500 devices nationwide.</p>
+                    
+                    <div class="about-highlights">
+                        <div class="highlight">
+                            <h3>🚗 Automotive Excellence</h3>
+                            <p>Expert in AUTOSAR architecture, ECU firmware development, and automotive diagnostics for major OEMs worldwide.</p>
+                        </div>
+                        <div class="highlight">
+                            <h3>⚡ Real-Time Systems</h3>
+                            <p>Proficient in FreeRTOS, Zephyr RTOS, and safety-critical embedded system design with proven track record.</p>
+                        </div>
+                        <div class="highlight">
+                            <h3>👥 Leadership</h3>
+                            <p>Built and mentored technical teams across multiple organizations, driving successful project delivery and innovation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-info">
+                    <div class="info-card">
+                        <h3>Contact Information</h3>
+                        <ul class="info-list">
+                            <li>
+                                <span class="info-icon">📧</span>
+                                <span>abhaytiwari586@gmail.com</span>
+                            </li>
+                            <li>
+                                <span class="info-icon">📱</span>
+                                <span>+91-7838049750</span>
+                            </li>
+                            <li>
+                                <span class="info-icon">📍</span>
+                                <span>Faridabad, Haryana, India</span>
+                            </li>
+                            <li>
+                                <span class="info-icon">💼</span>
+                                <a href="#" class="link">LinkedIn Profile</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>Core Expertise</h3>
+                        <ul class="expertise-list">
+                            <li>AUTOSAR Classic & Adaptive</li>
+                            <li>ECU Firmware Development</li>
+                            <li>UDS/ODX Diagnostics</li>
+                            <li>Renesas RH850 Platform</li>
+                            <li>Vector CANoe/CANape</li>
+                            <li>Real-Time Systems (RTOS)</li>
+                            <li>IoT & Edge AI</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <!-- Experience 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2024 – Present</div>
+                    <div class="timeline-content">
+                        <h3>Team Lead</h3>
+                        <h4>DH Lighting India Pvt Ltd · Faridabad</h4>
+                        <p>Leading firmware development for automotive lighting systems, managing technical recruitment, and implementing quality assurance protocols.</p>
+                        <ul>
+                            <li>Leading firmware development initiatives for automotive lighting ECUs</li>
+                            <li>Managing technical team recruitment and skill development programs</li>
+                            <li>Overseeing requirement analysis and design phases for production releases</li>
+                            <li>Implementing quality assurance and static code analysis standards</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag">Team Leadership</span>
+                            <span class="tag">Firmware Development</span>
+                            <span class="tag">Quality Assurance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">Mar 2023 – Jan 2024</div>
+                    <div class="timeline-content">
+                        <h3>Lead Software Engineer</h3>
+                        <h4>Motherson Innovation Tech Limited · Noida</h4>
+                        <p>Technical lead for MAN and HKMC automotive ECU firmware development projects.</p>
+                        <ul>
+                            <li>Spearheaded firmware development for MAN and HKMC project portfolios</li>
+                            <li>Coordinated cross-functional teams across design, verification, and testing</li>
+                            <li>Reduced bug resolution cycle time by 30% through structured protocols</li>
+                            <li>Managed technical documentation for OEM compliance</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag">AUTOSAR</span>
+                            <span class="tag">ECU Development</span>
+                            <span class="tag">OEM Projects</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2022 – Mar 2023</div>
+                    <div class="timeline-content">
+                        <h3>Senior Embedded Software Engineer</h3>
+                        <h4>Motherson Innovation Tech Limited · Noida</h4>
+                        <p>Firmware development for cabin management systems using Renesas RH850 platforms.</p>
+                        <ul>
+                            <li>Designed firmware modules for MAN Cabin Management System (RH850 F1L)</li>
+                            <li>Executed ECU diagnostics using UDS protocol with comprehensive validation</li>
+                            <li>Configured AUTOSAR application layer, BSW, and COM stack</li>
+                            <li>Performed static code analysis ensuring MISRA C compliance</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag">Renesas RH850</span>
+                            <span class="tag">UDS Diagnostics</span>
+                            <span class="tag">Vector Tools</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2019 – Jan 2021</div>
+                    <div class="timeline-content">
+                        <h3>Co-Founder & Tech Lead</h3>
+                        <h4>AIGROEDGE Technologies (AigroLabs) · New Delhi</h4>
+                        <p>Founded MeitY-backed AgriTech startup focused on Edge AI and precision agriculture IoT.</p>
+                        <ul>
+                            <li>Architected KRAASHAK IoT Soil Analytics Device with ESP32 platform</li>
+                            <li>Implemented edge ML algorithms reducing cloud transmission by 40%</li>
+                            <li>Scaled deployment to 500+ devices across precision farming networks</li>
+                            <li>Achieved MeitY recognition and government innovation grants</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag">IoT Platform</span>
+                            <span class="tag">Edge AI</span>
+                            <span class="tag">Startup Leadership</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 5 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">Dec 2018 – Feb 2020</div>
+                    <div class="timeline-content">
+                        <h3>Embedded AI Engineer</h3>
+                        <h4>StretchSkin Technologies Pte. Ltd. · Singapore</h4>
+                        <p>Wearable device firmware combining embedded AI, ML, and sensor fusion.</p>
+                        <ul>
+                            <li>Developed smart glove firmware with ML gesture recognition (>92% accuracy)</li>
+                            <li>Engineered multi-sensor fusion for StretchFit health monitoring device</li>
+                            <li>Implemented signal processing algorithms for sensor accuracy</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag">Wearable Tech</span>
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">Sensor Fusion</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 6 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">Apr 2017 – Dec 2018</div>
+                    <div class="timeline-content">
+                        <h3>Junior Research Fellow</h3>
+                        <h4>CSIR-Central Electronics Engineering Research Institute · Pilani</h4>
+                        <p>Water quality monitoring systems with predictive maintenance using IoT and ML.</p>
+                        <ul>
+                            <li>Engineered wireless multi-sensor system for industrial RO plant monitoring</li>
+                            <li>Implemented ML models for predictive membrane health analysis</li>
+                            <li>Developed Android application with Firebase for cloud monitoring</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag">IoT Systems</span>
+                            <span class="tag">Predictive Maintenance</span>
+                            <span class="tag">Research</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-icon">🚛</div>
+                    <h3>MAN Cabin Management System</h3>
+                    <p>Production-grade ECU firmware for MAN trucks using Renesas RH850 F1L. Comprehensive AUTOSAR implementation with UDS diagnostics and multi-ECU communication.</p>
+                    <div class="project-tech">
+                        <span>AUTOSAR</span>
+                        <span>Renesas RH850</span>
+                        <span>UDS</span>
+                        <span>CANoe</span>
+                        <span>DaVinci</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-icon">🚗</div>
+                    <h3>HKMC Cabin Management System</h3>
+                    <p>Climate control and comfort subsystems firmware for Hyundai-Kia vehicles. Achieved MISRA C compliance through rigorous analysis.</p>
+                    <div class="project-tech">
+                        <span>Renesas RH850 F1K</span>
+                        <span>MISRA C</span>
+                        <span>iSystem Debugger</span>
+                        <span>PcLint</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-icon">🌾</div>
+                    <h3>KRAASHAK Soil Analytics Platform</h3>
+                    <p>Edge IoT platform integrating 5+ agricultural sensors. Deployed 500+ devices with on-device ML reducing cloud transmission by 40%.</p>
+                    <div class="project-tech">
+                        <span>ESP32</span>
+                        <span>Edge ML</span>
+                        <span>AWS IoT</span>
+                        <span>MQTT</span>
+                        <span>Multi-Sensor</span>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-icon">🧤</div>
+                    <h3>Smart Glove - Gesture Recognition</h3>
+                    <p>Wearable device with real-time IMU motion tracking and ML pattern classification achieving >92% accuracy for gaming and rehabilitation.</p>
+                    <div class="project-tech">
+                        <span>IMU Sensors</span>
+                        <span>Machine Learning</span>
+                        <span>FreeRTOS</span>
+                        <span>Pattern Recognition</span>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-icon">💧</div>
+                    <h3>RO Plant Monitoring System</h3>
+                    <p>Real-time wireless multi-sensor system for industrial RO plants with predictive maintenance using ML and Android app integration.</p>
+                    <div class="project-tech">
+                        <span>Water Quality</span>
+                        <span>Predictive ML</span>
+                        <span>Android</span>
+                        <span>Firebase</span>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card">
+                    <div class="project-icon">💡</div>
+                    <h3>Air Sampling Pump Controller</h3>
+                    <p>ESP32-based controller with LVGL GUI for differential pressure monitoring. Integrated FreeRTOS for real-time scheduling.</p>
+                    <div class="project-tech">
+                        <span>ESP-IDF</span>
+                        <span>LVGL GUI</span>
+                        <span>FreeRTOS</span>
+                        <span>Touch Screen</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-container">
+                <!-- Automotive -->
+                <div class="skill-group">
+                    <h3>Automotive & AUTOSAR</h3>
+                    <div class="skill-tags">
+                        <span>AUTOSAR Classic & Adaptive</span>
+                        <span>ECU Firmware Development</span>
+                        <span>UDS / ODX Diagnostics</span>
+                        <span>CAN / LIN Protocols</span>
+                        <span>Safety-Critical Systems</span>
+                        <span>Real-Time System Design</span>
+                    </div>
+                </div>
+
+                <!-- Development Tools -->
+                <div class="skill-group">
+                    <h3>Development Tools</h3>
+                    <div class="skill-tags">
+                        <span>Vector CANoe / CANape</span>
+                        <span>DaVinci Developer/Configurator</span>
+                        <span>EB Tresos</span>
+                        <span>Trace32 Debugger</span>
+                        <span>iSystem Debugger</span>
+                        <span>S32 Design Studio</span>
+                        <span>MobilGene Studio</span>
+                    </div>
+                </div>
+
+                <!-- Microcontrollers -->
+                <div class="skill-group">
+                    <h3>Microcontroller Platforms</h3>
+                    <div class="skill-tags">
+                        <span>Renesas RH850 (F1L, F1K)</span>
+                        <span>STM32 ARM Cortex-M</span>
+                        <span>ESP32</span>
+                        <span>ATmega Series</span>
+                        <span>Automotive-grade MCUs</span>
+                    </div>
+                </div>
+
+                <!-- Programming -->
+                <div class="skill-group">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span>Embedded C/C++</span>
+                        <span>MATLAB / Simulink</span>
+                        <span>Python</span>
+                        <span>CAPL</span>
+                    </div>
+                </div>
+
+                <!-- RTOS & Protocols -->
+                <div class="skill-group">
+                    <h3>RTOS & Communication</h3>
+                    <div class="skill-tags">
+                        <span>FreeRTOS</span>
+                        <span>Zephyr RTOS</span>
+                        <span>CAN / LIN / FlexRay</span>
+                        <span>SPI / I2C / UART</span>
+                        <span>Bluetooth / BLE / Wi-Fi</span>
+                    </div>
+                </div>
+
+                <!-- Software Engineering -->
+                <div class="skill-group">
+                    <h3>Software Engineering</h3>
+                    <div class="skill-tags">
+                        <span>Git / Gerrit / GitLab</span>
+                        <span>JIRA / Confluence</span>
+                        <span>DOORS</span>
+                        <span>PcLint / MISRA C</span>
+                        <span>Agile Methodologies</span>
+                        <span>SDLC</span>
+                    </div>
+                </div>
+
+                <!-- IoT & ML -->
+                <div class="skill-group">
+                    <h3>IoT & Machine Learning</h3>
+                    <div class="skill-tags">
+                        <span>Edge AI Implementation</span>
+                        <span>AWS IoT / MQTT</span>
+                        <span>Sensor Fusion</span>
+                        <span>Signal Processing</span>
+                        <span>Predictive Analytics</span>
+                    </div>
+                </div>
+
+                <!-- Hardware -->
+                <div class="skill-group">
+                    <h3>Hardware Design</h3>
+                    <div class="skill-tags">
+                        <span>PCB Design (Eagle, EasyEDA)</span>
+                        <span>Circuit Simulation (Proteus)</span>
+                        <span>Sensor Interfacing</span>
+                        <span>Hardware Debugging</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications -->
+            <div class="certifications">
+                <h3>Certifications & Training</h3>
+                <div class="cert-grid">
+                    <div class="cert-item">✓ MATLAB: Code Generation for Classic AUTOSAR</div>
+                    <div class="cert-item">✓ MATLAB: Embedded Coder for Production Code</div>
+                    <div class="cert-item">✓ Electrobit: EB Tresos Classic AUTOSAR</div>
+                    <div class="cert-item">✓ Machine Learning Specialization</div>
+                    <div class="cert-item">✓ IEEE Member - Antennas & Propagation Society</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section class="publications">
+        <div class="container">
+            <h2 class="section-title">Publications & Research</h2>
+            <div class="publications-list">
+                <div class="publication">
+                    <div class="pub-year">2020</div>
+                    <div class="pub-details">
+                        <h3>Development of Machine Learning & Edge IoT Based Non-destructive Food Quality Monitoring System</h3>
+                        <p class="pub-authors">Sahu, B., Tiwari, A., Raheja, J.L., & Kumar, S.</p>
+                        <p class="pub-venue">IEEE International Conference on Computing, Power and Communication Technologies (GUCON)</p>
+                        <a href="https://doi.org/10.1109/GUCON48875.2020.9231061" target="_blank" class="pub-link">View Paper →</a>
+                    </div>
+                </div>
+
+                <div class="publication">
+                    <div class="pub-year">2020</div>
+                    <div class="pub-details">
+                        <h3>A Multispectral Spectroscopic Based Sensing System for Quality Parameters Measurement in Raw Milk</h3>
+                        <p class="pub-authors">Srivastava, S., Tiwari, A., Kumar, P., & Sadistap, S.</p>
+                        <p class="pub-venue">Sensor Letters, 18(4), 311-321</p>
+                    </div>
+                </div>
+
+                <div class="publication">
+                    <div class="pub-year">2017</div>
+                    <div class="pub-details">
+                        <h3>Development of Environment Monitoring System Using Internet of Things</h3>
+                        <p class="pub-authors">Tiwari, A., Sadistap, S., & Mahajan, S.K.</p>
+                        <p class="pub-venue">International Conference on Computer, Communication and Computational Sciences (RACCCS-2017)</p>
+                    </div>
+                </div>
+
+                <div class="publication">
+                    <div class="pub-year">2015</div>
+                    <div class="pub-details">
+                        <h3>A Simple Capacitance to Time Converter Circuit for Capacitive Sensor with Offset Capacitance</h3>
+                        <p class="pub-authors">Malik, S., Tiwari, A., K., K., Akbar, S.A., & Mahajan, S.K.</p>
+                        <p class="pub-venue">National Symposium on Instrumentation (NSI-40), IISc Bangalore</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-text">
+                    <h2 class="section-title">Let's Connect</h2>
+                    <p class="text-large">I'm always interested in hearing about new opportunities in embedded systems, automotive software, and IoT development.</p>
+                    <p>Whether you're looking for technical leadership, firmware development expertise, or consultation on AUTOSAR projects, feel free to reach out. I'm open to discussing new projects, collaborations, and career opportunities.</p>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:abhaytiwari586@gmail.com">abhaytiwari586@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <h4>Phone</h4>
+                            <a href="tel:+917838049750">+91-7838049750</a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Faridabad, Haryana, India</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">💼</div>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <a href="#">Connect with me</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Abhai Tiwari. All rights reserved.</p>
+                <p>Embedded Systems Engineer | Team Lead | AUTOSAR Specialist</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>
