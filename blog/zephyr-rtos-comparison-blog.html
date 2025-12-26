@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zephyr RTOS vs FreeRTOS: A Comprehensive Comparison | Abhai Tiwari</title>
+    <meta name="description" content="Deep dive comparison between Zephyr RTOS and FreeRTOS for embedded systems and IoT development. Learn which RTOS is best for your project.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0ea5e9;
+            --secondary-color: #06b6d4;
+            --dark-bg: #0f172a;
+            --darker-bg: #020617;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        /* Header Navigation */
+        nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 2px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        article {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border-color);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin: 3rem 0 1.5rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            color: var(--secondary-color);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        .intro-box {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(6, 182, 212, 0.1));
+            border-left: 4px solid var(--primary-color);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(6, 182, 212, 0.2));
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            margin: 2rem 0;
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .comparison-table th {
+            background: var(--darker-bg);
+            padding: 1.25rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .comparison-table td {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(14, 165, 233, 0.05);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .check {
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .cross {
+            color: var(--danger);
+            font-weight: bold;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: var(--darker-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Diagram Container */
+        .diagram-container {
+            background: var(--darker-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .diagram-title {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        svg {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Pros/Cons Grid */
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .pros-box, .cons-box {
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid;
+        }
+
+        .pros-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--success);
+        }
+
+        .cons-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: var(--danger);
+        }
+
+        .pros-box h4, .cons-box h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .pros-box ul, .cons-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pros-box li, .cons-box li {
+            padding: 0.75rem 0 0.75rem 2rem;
+            position: relative;
+        }
+
+        .pros-box li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .cons-box li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: var(--danger);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--darker-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box strong {
+            color: var(--accent);
+        }
+
+        /* CTA Box */
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin: 0 0 1rem 0;
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 0;
+        }
+
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 2rem 0;
+        }
+
+        .tag {
+            background: rgba(14, 165, 233, 0.2);
+            border: 1px solid var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            article {
+                padding: 2rem 1.5rem;
+            }
+
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .comparison-table {
+                font-size: 0.85rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="https://abhai-tiwari.github.io/" class="logo">Abhai Tiwari</a>
+            <ul class="nav-links">
+                <li><a href="https://abhai-tiwari.github.io/#home">Home</a></li>
+                <li><a href="https://abhai-tiwari.github.io/#about">About</a></li>
+                <li><a href="https://abhai-tiwari.github.io/#experience">Experience</a></li>
+                <li><a href="https://abhai-tiwari.github.io/#projects">Projects</a></li>
+                <li><a href="https://abhai-tiwari.github.io/#blog">Blog</a></li>
+                <li><a href="https://abhai-tiwari.github.io/#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Zephyr RTOS vs FreeRTOS: A Comprehensive Comparison</h1>
+            <p style="font-size: 1.2rem; color: var(--text-secondary); margin-top: 1rem;">
+                Making the right choice for your embedded systems and IoT projects
+            </p>
+            <div class="hero-meta">
+                <div class="meta-item">
+                    <span>📅</span>
+                    <span>December 26, 2024</span>
+                </div>
+                <div class="meta-item">
+                    <span>⏱️</span>
+                    <span>15 min read</span>
+                </div>
+                <div class="meta-item">
+                    <span>🏷️</span>
+                    <span>RTOS, Embedded Systems</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <article>
+            <div class="intro-box">
+                In the rapidly evolving landscape of Internet of Things (IoT) and embedded systems, choosing the right Real-Time Operating System (RTOS) can make or break your project. While FreeRTOS has long been the de facto standard, Zephyr RTOS is emerging as a powerful, modern alternative backed by the Linux Foundation and industry giants like Intel, Nordic Semiconductor, and NXP.
+            </div>
+
+            <h2>What is Zephyr RTOS?</h2>
+            
+            <p>Zephyr is a small, scalable real-time operating system designed specifically for resource-constrained and embedded systems. Since its inception in 2016, it has grown into one of the most comprehensive RTOS solutions available today, with a modular architecture that allows developers to configure the system to include only the components their application needs.</p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Supported Boards</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8KB</div>
+                    <div class="stat-label">Minimum Memory</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">CPU Architectures</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2016</div>
+                    <div class="stat-label">First Release</div>
+                </div>
+            </div>
+
+            <div class="diagram-container">
+                <div class="diagram-title">Zephyr RTOS Architecture</div>
+                <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Applications Layer -->
+                    <rect x="50" y="20" width="700" height="60" fill="#0ea5e9" rx="8"/>
+                    <text x="400" y="55" text-anchor="middle" fill="white" font-size="20" font-weight="bold">Applications</text>
+                    
+                    <!-- API Layer -->
+                    <rect x="50" y="100" width="700" height="60" fill="#06b6d4" rx="8"/>
+                    <text x="400" y="135" text-anchor="middle" fill="white" font-size="20" font-weight="bold">APIs (POSIX, BSD Sockets, Custom)</text>
+                    
+                    <!-- Subsystems -->
+                    <rect x="50" y="180" width="220" height="100" fill="#10b981" rx="8"/>
+                    <text x="160" y="210" text-anchor="middle" fill="white" font-size="16" font-weight="bold">Networking</text>
+                    <text x="160" y="235" text-anchor="middle" fill="white" font-size="13">IPv4/IPv6</text>
+                    <text x="160" y="255" text-anchor="middle" fill="white" font-size="13">BLE, Thread</text>
+                    <text x="160" y="270" text-anchor="middle" fill="white" font-size="13">LoRaWAN</text>
+                    
+                    <rect x="290" y="180" width="220" height="100" fill="#10b981" rx="8"/>
+                    <text x="400" y="210" text-anchor="middle" fill="white" font-size="16" font-weight="bold">Storage</text>
+                    <text x="400" y="235" text-anchor="middle" fill="white" font-size="13">File Systems</text>
+                    <text x="400" y="255" text-anchor="middle" fill="white" font-size="13">Flash Management</text>
+                    <text x="400" y="270" text-anchor="middle" fill="white" font-size="13">Settings</text>
+                    
+                    <rect x="530" y="180" width="220" height="100" fill="#10b981" rx="8"/>
+                    <text x="640" y="210" text-anchor="middle" fill="white" font-size="16" font-weight="bold">Security</text>
+                    <text x="640" y="235" text-anchor="middle" fill="white" font-size="13">Crypto Libraries</text>
+                    <text x="640" y="255" text-anchor="middle" fill="white" font-size="13">Secure Boot</text>
+                    <text x="640" y="270" text-anchor="middle" fill="white" font-size="13">TLS/DTLS</text>
+                    
+                    <!-- Kernel -->
+                    <rect x="50" y="300" width="700" height="80" fill="#0f172a" rx="8"/>
+                    <text x="400" y="330" text-anchor="middle" fill="white" font-size="18" font-weight="bold">Kernel</text>
+                    <text x="400" y="355" text-anchor="middle" fill="#94a3b8" font-size="14">Threads • Scheduling • IPC • Synchronization • Memory Management</text>
+                    
+                    <!-- Device Drivers -->
+                    <rect x="50" y="400" width="700" height="60" fill="#334155" rx="8"/>
+                    <text x="400" y="435" text-anchor="middle" fill="white" font-size="16" font-weight="bold">Device Drivers (GPIO, I2C, SPI, UART, USB, CAN, ADC, PWM)</text>
+                    
+                    <!-- Hardware -->
+                    <rect x="50" y="480" width="700" height="10" fill="#020617" rx="4"/>
+                </svg>
+            </div>
+
+            <h2>Zephyr vs FreeRTOS: Detailed Comparison</h2>
+            
+            <p>Both Zephyr and FreeRTOS are powerful RTOS solutions, but they target different use cases and offer distinct advantages. Let's dive into a comprehensive comparison across multiple dimensions.</p>
+
+            <div class="diagram-container">
+                <div class="diagram-title">Market Position & Ecosystem</div>
+                <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Zephyr side -->
+                    <rect x="50" y="50" width="320" height="300" fill="rgba(14, 165, 233, 0.1)" stroke="#0ea5e9" stroke-width="3" rx="8"/>
+                    <text x="210" y="90" text-anchor="middle" fill="#0ea5e9" font-size="24" font-weight="bold">Zephyr RTOS</text>
+                    
+                    <circle cx="210" cy="140" r="50" fill="#0ea5e9" opacity="0.8"/>
+                    <text x="210" y="150" text-anchor="middle" fill="white" font-size="20" font-weight="bold">Linux</text>
+                    <text x="210" y="170" text-anchor="middle" fill="white" font-size="14">Foundation</text>
+                    
+                    <circle cx="140" cy="230" r="35" fill="#06b6d4" opacity="0.8"/>
+                    <text x="140" y="238" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Intel</text>
+                    
+                    <circle cx="210" cy="260" r="35" fill="#06b6d4" opacity="0.8"/>
+                    <text x="210" y="268" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Nordic</text>
+                    
+                    <circle cx="280" cy="230" r="35" fill="#06b6d4" opacity="0.8"/>
+                    <text x="280" y="238" text-anchor="middle" fill="white" font-size="14" font-weight="bold">NXP</text>
+                    
+                    <text x="210" y="330" text-anchor="middle" fill="#0ea5e9" font-size="14">Open Governance</text>
+                    
+                    <!-- FreeRTOS side -->
+                    <rect x="430" y="50" width="320" height="300" fill="rgba(239, 68, 68, 0.1)" stroke="#ef4444" stroke-width="3" rx="8"/>
+                    <text x="590" y="90" text-anchor="middle" fill="#ef4444" font-size="24" font-weight="bold">FreeRTOS</text>
+                    
+                    <circle cx="590" cy="150" r="60" fill="#ef4444" opacity="0.8"/>
+                    <text x="590" y="160" text-anchor="middle" fill="white" font-size="20" font-weight="bold">Amazon</text>
+                    
+                    <rect x="490" y="230" width="200" height="50" fill="#f59e0b" opacity="0.8" rx="8"/>
+                    <text x="590" y="250" text-anchor="middle" fill="#0f172a" font-size="14" font-weight="bold">AWS Integration</text>
+                    <text x="590" y="268" text-anchor="middle" fill="#0f172a" font-size="12">Cloud-First Approach</text>
+                    
+                    <text x="590" y="320" text-anchor="middle" fill="#ef4444" font-size="14">Commercial Focus</text>
+                </svg>
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Zephyr RTOS</th>
+                        <th>FreeRTOS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Licensing</strong></td>
+                        <td>Apache 2.0 (fully permissive)</td>
+                        <td>MIT (permissive)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Governance</strong></td>
+                        <td>Linux Foundation (community-driven)</td>
+                        <td>Amazon (vendor-controlled)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Minimum Footprint</strong></td>
+                        <td>~8 KB RAM</td>
+                        <td>~2 KB RAM (kernel only)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supported Boards</strong></td>
+                        <td>500+ boards, 5 architectures</td>
+                        <td>40+ official ports</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Networking Stack</strong></td>
+                        <td><span class="check">✓</span> Full IPv4/IPv6, BSD sockets</td>
+                        <td><span class="check">✓</span> FreeRTOS+TCP (separate)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bluetooth Support</strong></td>
+                        <td><span class="check">✓</span> BLE 5.3, Mesh native</td>
+                        <td><span class="cross">✗</span> Third-party only</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thread/Zigbee</strong></td>
+                        <td><span class="check">✓</span> Native support</td>
+                        <td><span class="cross">✗</span> Third-party only</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LoRaWAN</strong></td>
+                        <td><span class="check">✓</span> Built-in</td>
+                        <td><span class="cross">✗</span> External libraries</td>
+                    </tr>
+                    <tr>
+                        <td><strong>USB Device/Host</strong></td>
+                        <td><span class="check">✓</span> Comprehensive support</td>
+                        <td><span class="check">✓</span> Limited support</td>
+                    </tr>
+                    <tr>
+                        <td><strong>File Systems</strong></td>
+                        <td><span class="check">✓</span> FAT, LittleFS, NVS</td>
+                        <td><span class="check">✓</span> FreeRTOS+FAT (separate)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Device Driver Model</strong></td>
+                        <td><span class="check">✓</span> Unified device API</td>
+                        <td><span class="cross">✗</span> Vendor-specific</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Build System</strong></td>
+                        <td>CMake + Kconfig (highly modular)</td>
+                        <td>Vendor makefiles/IDE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Configuration</strong></td>
+                        <td>Kconfig (kernel-style)</td>
+                        <td>Header files</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Device Tree</strong></td>
+                        <td><span class="check">✓</span> Full support</td>
+                        <td><span class="cross">✗</span> Not available</td>
+                    </tr>
+                    <tr>
+                        <td><strong>POSIX API</strong></td>
+                        <td><span class="check">✓</span> Comprehensive</td>
+                        <td><span class="check">✓</span> Limited</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Security Features</strong></td>
+                        <td>TLS, secure boot, crypto libs, TEE</td>
+                        <td>Basic, AWS IoT focused</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Power Management</strong></td>
+                        <td><span class="check">✓</span> Sophisticated PM subsystem</td>
+                        <td>Tickless idle mode</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Testing Framework</strong></td>
+                        <td><span class="check">✓</span> Ztest (built-in)</td>
+                        <td>External frameworks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Documentation</strong></td>
+                        <td>Excellent (comprehensive)</td>
+                        <td>Good (AWS-focused)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cloud Integration</strong></td>
+                        <td>Cloud-agnostic (Azure, AWS, GCP)</td>
+                        <td>AWS-optimized</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Community Size</strong></td>
+                        <td>Growing rapidly (~100k users)</td>
+                        <td>Very large (~500k users)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Learning Curve</strong></td>
+                        <td>Moderate to Steep</td>
+                        <td>Gentle</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Best For</strong></td>
+                        <td>Modern IoT, multi-protocol devices</td>
+                        <td>Simple embedded, AWS ecosystem</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Key Differentiators</h2>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏗️</div>
+                    <h3>Architecture Philosophy</h3>
+                    <p><strong>Zephyr:</strong> Comprehensive, batteries-included approach with unified device model and extensive subsystems.</p>
+                    <p><strong>FreeRTOS:</strong> Minimal kernel focused on simplicity, with optional add-on modules.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Configuration System</h3>
+                    <p><strong>Zephyr:</strong> Uses Kconfig (like Linux kernel) for sophisticated compile-time configuration with dependency management.</p>
+                    <p><strong>FreeRTOS:</strong> Simple header file configuration, easier for beginners but less powerful.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Networking Capabilities</h3>
+                    <p><strong>Zephyr:</strong> Native support for BLE, Thread, Zigbee, LoRaWAN, full IPv4/IPv6 stack out of the box.</p>
+                    <p><strong>FreeRTOS:</strong> Requires separate FreeRTOS+TCP or third-party libraries; focus on AWS IoT connectivity.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Security Approach</h3>
+                    <p><strong>Zephyr:</strong> Built-in security subsystem with crypto libraries, secure boot, and TEE support.</p>
+                    <p><strong>FreeRTOS:</strong> Security focused on AWS integration with IoT Core and TLS support.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Hardware Abstraction</h3>
+                    <p><strong>Zephyr:</strong> Unified device driver API with Device Tree for hardware description, makes code highly portable.</p>
+                    <p><strong>FreeRTOS:</strong> Hardware abstraction left to vendors; less portable across different hardware.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <h3>Cloud Ecosystem</h3>
+                    <p><strong>Zephyr:</strong> Cloud-agnostic, works with any cloud provider equally well.</p>
+                    <p><strong>FreeRTOS:</strong> Deeply integrated with AWS ecosystem, optimized for AWS IoT services.</p>
+                </div>
+            </div>
+
+            <div class="diagram-container">
+                <div class="diagram-title">Memory Footprint Comparison</div>
+                <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                    <!-- FreeRTOS bars -->
+                    <text x="150" y="80" text-anchor="middle" fill="#ef4444" font-size="18" font-weight="bold">FreeRTOS</text>
+                    
+                    <rect x="50" y="100" width="60" height="200" fill="#ef4444" opacity="0.8" rx="4"/>
+                    <text x="80" y="320" text-anchor="middle" fill="#e2e8f0" font-size="14">Kernel</text>
+                    <text x="80" y="340" text-anchor="middle" fill="#e2e8f0" font-size="16" font-weight="bold">2 KB</text>
+                    
+                    <rect x="140" y="50" width="60" height="250" fill="#f59e0b" opacity="0.8" rx="4"/>
+                    <text x="170" y="320" text-anchor="middle" fill="#e2e8f0" font-size="14">+ TCP/IP</text>
+                    <text x="170" y="340" text-anchor="middle" fill="#e2e8f0" font-size="16" font-weight="bold">~20 KB</text>
+                    
+                    <rect x="230" y="30" width="60" height="270" fill="#10b981" opacity="0.8" rx="4"/>
+                    <text x="260" y="320" text-anchor="middle" fill="#e2e8f0" font-size="14">Full Stack</text>
+                    <text x="260" y="340" text-anchor="middle" fill="#e2e8f0" font-size="16" font-weight="bold">~40 KB</text>
+                    
+                    <!-- Zephyr bars -->
+                    <text x="550" y="80" text-anchor="middle" fill="#0ea5e9" font-size="18" font-weight="bold">Zephyr</text>
+                    
+                    <rect x="450" y="90" width="60" height="210" fill="#0ea5e9" opacity="0.8" rx="4"/>
+                    <text x="480" y="320" text-anchor="middle" fill="#e2e8f0" font-size="14">Minimal</text>
+                    <text x="480" y="340" text-anchor="middle" fill="#e2e8f0" font-size="16" font-weight="bold">8 KB</text>
+                    
+                    <rect x="540" y="50" width="60" height="250" fill="#06b6d4" opacity="0.8" rx="4"/>
+                    <text x="570" y="320" text-anchor="middle" fill="#e2e8f0" font-size="14">+ Network</text>
+                    <text x="570" y="340" text-anchor="middle" fill="#e2e8f0" font-size="16" font-weight="bold">~30 KB</text>
+                    
+                    <rect x="630" y="20" width="60" height="280" fill="#10b981" opacity="0.8" rx="4"/>
+                    <text x="660" y="320" text-anchor="middle" fill="#e2e8f0" font-size="14">Full IoT</text>
+                    <text x="660" y="340" text-anchor="middle" fill="#e2e8f0" font-size="16" font-weight="bold">~50 KB</text>
+                    
+                    <!-- Baseline -->
+                    <line x1="30" y1="300" x2="720" y2="300" stroke="#334155" stroke-width="2"/>
+                </svg>
+            </div>
+
+            <div class="highlight-box">
+                <strong>Memory Footprint Note:</strong> While FreeRTOS has a smaller minimum footprint (2 KB for kernel only), Zephyr's 8 KB minimum includes more functionality. When comparing full-featured configurations with networking and protocols, the difference narrows significantly, and Zephyr often provides more features for comparable memory usage.
+            </div>
+
+            <h2>Pros and Cons Analysis</h2>
+
+            <h3>Zephyr RTOS</h3>
+            <div class="pros-cons">
+                <div class="pros-box">
+                    <h4>Advantages</h4>
+                    <ul>
+                        <li>Comprehensive built-in networking (BLE, Thread, LoRaWAN, IPv6)</li>
+                        <li>Excellent hardware abstraction and portability via Device Tree</li>
+                        <li>Modern build system (CMake + Kconfig) with powerful configuration</li>
+                        <li>Unified device driver model across all platforms</li>
+                        <li>Strong security features built into core OS</li>
+                        <li>Active development and rapid feature additions</li>
+                        <li>Cloud-agnostic architecture</li>
+                        <li>Growing commercial support and ecosystem</li>
+                        <li>Comprehensive testing framework included</li>
+                        <li>Better suited for complex multi-protocol IoT devices</li>
+                    </ul>
+                </div>
+                
+                <div class="cons-box">
+                    <h4>Challenges</h4>
+                    <ul>
+                        <li>Steeper learning curve, especially for beginners</li>
+                        <li>More complex configuration system</li>
+                        <li>Larger minimum footprint than bare FreeRTOS</li>
+                        <li>Smaller community compared to FreeRTOS</li>
+                        <li>Fewer third-party commercial middleware options</li>
+                        <li>Documentation can be overwhelming for newcomers</li>
+                        <li>Build times longer due to complexity</li>
+                        <li>Less mature than FreeRTOS (fewer years in production)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>FreeRTOS</h3>
+            <div class="pros-cons">
+                <div class="pros-box">
+                    <h4>Advantages</h4>
+                    <ul>
+                        <li>Extremely simple and easy to learn</li>
+                        <li>Smallest possible footprint (2 KB kernel)</li>
+                        <li>Huge community and extensive resources</li>
+                        <li>Proven reliability in millions of devices</li>
+                        <li>Excellent documentation and examples</li>
+                        <li>Strong AWS integration and support</li>
+                        <li>Fast compilation times</li>
+                        <li>Wide commercial middleware availability</li>
+                        <li>Mature and stable codebase</li>
+                        <li>Perfect for simple embedded applications</li>
+                    </ul>
+                </div>
+                
+                <div class="cons-box">
+                    <h4>Challenges</h4>
+                    <ul>
+                        <li>No built-in advanced wireless protocols (BLE, Thread, etc.)</li>
+                        <li>Hardware abstraction left to vendors, less portable</li>
+                        <li>Configuration via header files less sophisticated</li>
+                        <li>Networking requires separate modules</li>
+                        <li>AWS-centric cloud integration</li>
+                        <li>Device driver model not standardized</li>
+                        <li>Less suitable for complex multi-protocol devices</li>
+                        <li>Security features require additional components</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>When to Choose Zephyr</h2>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Modern IoT Products</h3>
+                    <p>Building devices that need multiple wireless protocols (BLE + Thread, LoRaWAN + Wi-Fi) where Zephyr's native support shines.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏭</div>
+                    <h3>Industrial IoT</h3>
+                    <p>Projects requiring robust security, sophisticated power management, and cloud-agnostic connectivity.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Multi-Platform Products</h3>
+                    <p>When you need to support multiple hardware platforms with the same codebase thanks to Device Tree and unified drivers.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Future-Proofing</h3>
+                    <p>Projects that will evolve and need new features; Zephyr's active development means rapid addition of new protocols and capabilities.</p>
+                </div>
+            </div>
+
+            <h2>When to Choose FreeRTOS</h2>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Resource-Constrained Devices</h3>
+                    <p>Ultra-low power devices with minimal RAM where every kilobyte counts and simple scheduling is sufficient.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <h3>AWS Ecosystem</h3>
+                    <p>Products deeply integrated with AWS IoT services where FreeRTOS's optimizations provide clear advantages.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Learning & Prototyping</h3>
+                    <p>Educational projects or rapid prototyping where FreeRTOS's simplicity and gentle learning curve are beneficial.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Simple Applications</h3>
+                    <p>Straightforward embedded applications without complex networking requirements where a minimal kernel is ideal.</p>
+                </div>
+            </div>
+
+            <div class="diagram-container">
+                <div class="diagram-title">Development Ecosystem Comparison</div>
+                <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Zephyr Ecosystem -->
+                    <g transform="translate(0, 0)">
+                        <circle cx="200" cy="250" r="120" fill="rgba(14, 165, 233, 0.2)" stroke="#0ea5e9" stroke-width="3"/>
+                        <text x="200" y="250" text-anchor="middle" fill="#0ea5e9" font-size="22" font-weight="bold">Zephyr</text>
+                        
+                        <circle cx="120" cy="180" r="50" fill="#06b6d4" opacity="0.8"/>
+                        <text x="120" y="188" text-anchor="middle" fill="white" font-size="13" font-weight="bold">West Tool</text>
+                        
+                        <circle cx="280" cy="180" r="50" fill="#06b6d4" opacity="0.8"/>
+                        <text x="280" y="188" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Kconfig</text>
+                        
+                        <circle cx="120" cy="320" r="50" fill="#06b6d4" opacity="0.8"/>
+                        <text x="120" y="325" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Device</text>
+                        <text x="120" y="340" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Tree</text>
+                        
+                        <circle cx="280" cy="320" r="50" fill="#06b6d4" opacity="0.8"/>
+                        <text x="280" y="328" text-anchor="middle" fill="white" font-size="13" font-weight="bold">CMake</text>
+                        
+                        <text x="200" y="420" text-anchor="middle" fill="#0ea5e9" font-size="16" font-weight="bold">Modern & Modular</text>
+                    </g>
+                    
+                    <!-- FreeRTOS Ecosystem -->
+                    <g transform="translate(400, 0)">
+                        <circle cx="200" cy="250" r="120" fill="rgba(239, 68, 68, 0.2)" stroke="#ef4444" stroke-width="3"/>
+                        <text x="200" y="250" text-anchor="middle" fill="#ef4444" font-size="22" font-weight="bold">FreeRTOS</text>
+                        
+                        <circle cx="130" cy="190" r="45" fill="#f59e0b" opacity="0.8"/>
+                        <text x="130" y="198" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Vendor</text>
+                        <text x="130" y="213" text-anchor="middle" fill="white" font-size="13" font-weight="bold">IDEs</text>
+                        
+                        <circle cx="270" cy="190" r="45" fill="#f59e0b" opacity="0.8"/>
+                        <text x="270" y="198" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Simple</text>
+                        <text x="270" y="213" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Config</text>
+                        
+                        <circle cx="130" cy="310" r="45" fill="#f59e0b" opacity="0.8"/>
+                        <text x="130" y="315" text-anchor="middle" fill="white" font-size="13" font-weight="bold">AWS</text>
+                        <text x="130" y="330" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Libs</text>
+                        
+                        <circle cx="270" cy="310" r="45" fill="#f59e0b" opacity="0.8"/>
+                        <text x="270" y="315" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Make</text>
+                        <text x="270" y="330" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Files</text>
+                        
+                        <text x="200" y="420" text-anchor="middle" fill="#ef4444" font-size="16" font-weight="bold">Simple & Proven</text>
+                    </g>
+                </svg>
+            </div>
+
+            <h2>Getting Started</h2>
+
+            <h3>Zephyr Quick Start</h3>
+            <div class="code-block">
+                <pre># Install dependencies
+sudo apt install cmake ninja-build gperf ccache dfu-util device-tree-compiler wget python3
+
+# Install west tool
+pip3 install west
+
+# Initialize workspace
+west init ~/zephyrproject
+cd ~/zephyrproject
+west update
+
+# Install Zephyr SDK
+cd ~
+wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.5/zephyr-sdk-0.16.5_linux-x86_64.tar.xz
+tar xvf zephyr-sdk-0.16.5_linux-x86_64.tar.xz
+cd zephyr-sdk-0.16.5
+./setup.sh
+
+# Build a sample
+cd ~/zephyrproject/zephyr
+west build -p auto -b nrf52840dk_nrf52840 samples/basic/blinky
+west flash</pre>
+            </div>
+
+            <h3>FreeRTOS Quick Start</h3>
+            <div class="code-block">
+                <pre># Clone FreeRTOS
+git clone https://github.com/FreeRTOS/FreeRTOS.git
+cd FreeRTOS
+
+# Navigate to your board's demo
+cd FreeRTOS/Demo/CORTEX_M4_STM32F4_Discovery
+
+# Configure FreeRTOSConfig.h for your needs
+nano FreeRTOSConfig.h
+
+# Build with your IDE or makefile
+make
+
+# Flash to your device
+make flash</pre>
+            </div>
+
+            <div class="cta-box">
+                <h3>Ready to Build Your Next IoT Project?</h3>
+                <p>Both Zephyr and FreeRTOS are excellent choices, each excelling in different scenarios. Choose Zephyr for modern, multi-protocol IoT devices with complex requirements. Choose FreeRTOS for simple, resource-constrained applications or AWS-centric deployments.</p>
+                <p style="margin-top: 20px;">The future of embedded systems is bright with both options!</p>
+            </div>
+
+            <h2>Conclusion</h2>
+
+            <p>The choice between Zephyr RTOS and FreeRTOS isn't about which is "better" in absolute terms—it's about which is better for your specific needs.</p>
+
+            <p><strong>Choose Zephyr</strong> if you're building modern IoT devices that need multiple wireless protocols, hardware portability, sophisticated power management, and you value an integrated, batteries-included approach with active development.</p>
+
+            <p><strong>Choose FreeRTOS</strong> if you need the smallest possible footprint, prefer simplicity and ease of learning, are deeply invested in the AWS ecosystem, or are building straightforward embedded applications where a minimal kernel is sufficient.</p>
+
+            <p>Both operating systems have proven themselves in production, both have strong backing, and both will continue to evolve. Zephyr represents the future direction with its comprehensive, modern architecture, while FreeRTOS excels with its proven simplicity and massive installed base.</p>
+
+            <p>The embedded systems landscape is richer for having both options. Evaluate your project requirements, team expertise, and long-term needs to make the best choice for your situation.</p>
+
+            <div class="tags">
+                <span class="tag">Zephyr RTOS</span>
+                <span class="tag">FreeRTOS</span>
+                <span class="tag">Embedded Systems</span>
+                <span class="tag">IoT</span>
+                <span class="tag">Real-Time OS</span>
+                <span class="tag">Wireless Protocols</span>
+                <span class="tag">Bluetooth LE</span>
+                <span class="tag">Thread</span>
+                <span class="tag">AUTOSAR</span>
+            </div>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); text-align: center;">
+                <p style="font-size: 1.1rem;"><strong>What's your experience with Zephyr or FreeRTOS?</strong></p>
+                <p>Share your thoughts and project stories. Let's discuss in the comments or connect with me on LinkedIn!</p>
+            </div>
+        </article>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">© 2025 Abhai Tiwari. All rights reserved.</p>
+            <p>Embedded Systems Engineer | Team Lead | AUTOSAR Specialist</p>
+            <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <a href="https://www.linkedin.com/in/abhai-tiwari-7906aab3/" style="color: var(--primary-color); text-decoration: none;">LinkedIn</a>
+                <a href="https://github.com/ABHAI-TIWARI" style="color: var(--primary-color); text-decoration: none;">GitHub</a>
+                <a href="mailto:abhaytiwari586@gmail.com" style="color: var(--primary-color); text-decoration: none;">Email</a>
+                <a href="https://abhai-tiwari.github.io/#blog" style="color: var(--primary-color); text-decoration: none;">More Articles</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
